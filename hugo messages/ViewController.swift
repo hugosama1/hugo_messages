@@ -10,7 +10,17 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    var store : MessageStore!
+    
     @IBOutlet var txtMessage: UITextField!
+    
+    override func viewDidLoad() {
+        
+        store.fetchMessages {
+            (messagesResult) -> Void in
+            print(messagesResult)
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

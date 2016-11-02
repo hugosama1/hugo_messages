@@ -37,7 +37,7 @@ class MessageStore {
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
-            
+            print(data)
             var result = self.processMessagesRequest(data: data, error: error)
             if case .success(_) = result {
                 do {
@@ -58,7 +58,7 @@ class MessageStore {
         guard let jsonData = data else {
             return .failure(error!)
         }
-        return HugoSamaAPI.photos(fromJSON: jsonData,into: self.persistentContainer.viewContext)
+        return HugoSamaAPI.messages(fromJSON: jsonData,into: self.persistentContainer.viewContext)
     }
     
     

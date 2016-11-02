@@ -1,5 +1,5 @@
 //
-//  HugoSamaApi.swift
+//  
 //  hugo messages
 //
 //  Created by hugo on 10/21/16.
@@ -39,13 +39,12 @@ struct HugoSamaAPI {
         do {
             let jsonArray = try JSONSerialization.jsonObject(with: data,options: [])
             guard
-                let messageArray = jsonArray as? [Message],
-                let photos = jsonDictionary["photos"] as? [String:Any],
-                let photosArray = photos["photo"] as? [[String:Any]] else {
+                let messageArray = jsonArray as? [Message] else {
                     // The JSON structure doesn't match our expectations
-                    return .failure(FlickrError.invalidJSONData)
+                    return .failure(HugosamaError.invalidJSONData)
             }
-            var finalPhotos = [Photo]()
+            var finalMessages = [Message]()
+            /*
             for photoJSON in photosArray {
                 if let photo = photo(fromJSON: photoJSON, into: context) {
                     finalPhotos.append(photo)
@@ -55,8 +54,8 @@ struct HugoSamaAPI {
                 // We weren't able to parse any of the photos
                 // Maybe the JSON format for photos has changed
                 return .failure(FlickrError.invalidJSONData)
-            }
-            return .success(finalPhotos)
+            }*/
+            return .success(finalMessages)
         } catch let error {
             return .failure(error)
         }
