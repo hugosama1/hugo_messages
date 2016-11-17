@@ -15,12 +15,12 @@ enum HugosamaError: Error {
 }
 
 struct HugoSamaAPI {
-    private static let baseURLString = "http://10.26.180.35:8080"
+    private static let baseURLString = "http://hugosama.com:8080"
     
     private static func hugosamaURL(at subfolder: String, parameters: [String:String]?) -> URL {
         var components = URLComponents(string: baseURLString)!
         var queryItems = [URLQueryItem]()
-        
+        components.path += subfolder;
         if let additionalParams = parameters {
             for (key, value) in additionalParams {
                 let item = URLQueryItem(name: key, value: value)
@@ -31,34 +31,30 @@ struct HugoSamaAPI {
         return components.url!
     }
     
-    public static func messagesURL ( date : Int = 0 ) -> URL {
+    public static func messagesURL ( date : Int64 = 0 ) -> URL {
         return hugosamaURL(at:"/messages", parameters: ["date" : String(date) ])
     }
     
     static func messages(fromJSON data: Data,into context: NSManagedObjectContext) -> MessageResult {
         do {
-            let jsonArray = try JSONSerialization.jsonObject(with: data,options: [])
-            guard
-                let messageArray = jsonArray as? [Message] else {
-                    // The JSON structure doesn't match our expectations
-                    return .failure(HugosamaError.invalidJSONData)
-            }
+            let jsonArray = try JSONSerialization.jsonObject(with: data, options: [JSONSerialization.ReadingOptions.allowFragments])
             var finalMessages = [Message]()
-            /*
-            for photoJSON in photosArray {
-                if let photo = photo(fromJSON: photoJSON, into: context) {
-                    finalPhotos.append(photo)
-                }
+            let messageArray = jsonArray as? [[String:Any]]
+            for messageJson in messageArray! {
+                let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+                message.id = messageJson["_id"] as! Int16
+                message.date = messageJson["date"] as! Int64
+                message.message = messageJson["message"] as! String?
+                finalMessages.append(message)
             }
-            if finalPhotos.isEmpty && !photosArray.isEmpty {
-                // We weren't able to parse any of the photos
-                // Maybe the JSON format for photos has changed
-                return .failure(FlickrError.invalidJSONData)
-            }*/
             return .success(finalMessages)
         } catch let error {
             return .failure(error)
         }
+    }
+    
+    static func newMessage( message : String ) {
+        
     }
 
     

@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let messageViewController = window!.rootViewController as! ViewController
+        let navController = window!.rootViewController as! UINavigationController
+       let messageViewController = navController.topViewController as! MessagesViewController
         messageViewController.store = MessageStore()
         return true
     }

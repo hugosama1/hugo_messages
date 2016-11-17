@@ -17,13 +17,15 @@ enum MessageResult {
 
 class MessageStore {
     
+    var allMessages =  [Message]()
+    
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
     }()
     
     public let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "HugosamaMessages")
+        let container = NSPersistentContainer(name: "HugoMessages")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 print("Error setting up Core Data (\(error)).")
@@ -33,11 +35,10 @@ class MessageStore {
     }()
     
     func fetchMessages(completion: @escaping (MessageResult) -> Void) {
-        let url = HugoSamaAPI.messagesURL()
+        let url = HugoSamaAPI.messagesURL(date: getLastDate())
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
-            print(data)
             var result = self.processMessagesRequest(data: data, error: error)
             if case .success(_) = result {
                 do {
@@ -59,6 +60,39 @@ class MessageStore {
             return .failure(error!)
         }
         return HugoSamaAPI.messages(fromJSON: jsonData,into: self.persistentContainer.viewContext)
+    }
+    
+    func getLastDate() -> Int64 {
+        var lastDate:Int64 = 0
+        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(Message.date), ascending: false)
+        fetchRequest.sortDescriptors = [sortByDate]
+        fetchRequest.fetchLimit = 1
+        let viewContext = persistentContainer.viewContext
+        viewContext.performAndWait {
+            do {
+                let message = try viewContext.fetch(fetchRequest)[0]
+                lastDate = message.date
+            } catch {
+                
+            }
+        }
+        return lastDate
+    }
+    
+    func fetchAllMessages(completion: @escaping (MessageResult) -> Void) {
+        let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: #keyPath(Message.date), ascending: true)
+        fetchRequest.sortDescriptors = [sortByDate]
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do {
+                let allMessages = try viewContext.fetch(fetchRequest)
+                completion(.success(allMessages))
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
     
     

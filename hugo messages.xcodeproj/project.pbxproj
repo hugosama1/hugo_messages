@@ -15,10 +15,12 @@
 		9AB71D1B1DBA97F000836D67 /* hugo_messagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D1A1DBA97F000836D67 /* hugo_messagesTests.swift */; };
 		9AB71D261DBA97F000836D67 /* hugo_messagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D251DBA97F000836D67 /* hugo_messagesUITests.swift */; };
 		9AB71D381DBABD0100836D67 /* HugoMessages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D361DBABD0100836D67 /* HugoMessages.xcdatamodeld */; };
-		9AB71D3B1DBABE2700836D67 /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D391DBABE2700836D67 /* Message+CoreDataClass.swift */; };
-		9AB71D3C1DBABE2700836D67 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D3A1DBABE2700836D67 /* Message+CoreDataProperties.swift */; };
 		9AB71D3E1DBABEF000836D67 /* MessageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D3D1DBABEF000836D67 /* MessageStore.swift */; };
 		9AB71D401DBABF8000836D67 /* HugoSamaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB71D3F1DBABF8000836D67 /* HugoSamaAPI.swift */; };
+		9AF81E331DDCDA9100B93E7E /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF81E311DDCDA9100B93E7E /* Message+CoreDataClass.swift */; };
+		9AF81E341DDCDA9100B93E7E /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF81E321DDCDA9100B93E7E /* Message+CoreDataProperties.swift */; };
+		9AF81E361DDCECEC00B93E7E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF81E351DDCECEC00B93E7E /* MessagesViewController.swift */; };
+		9AF81E381DDD225500B93E7E /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF81E371DDD225500B93E7E /* MessageDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +55,12 @@
 		9AB71D251DBA97F000836D67 /* hugo_messagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hugo_messagesUITests.swift; sourceTree = "<group>"; };
 		9AB71D271DBA97F000836D67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AB71D371DBABD0100836D67 /* HugoMessages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HugoMessages.xcdatamodel; sourceTree = "<group>"; };
-		9AB71D391DBABE2700836D67 /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataClass.swift"; path = "../Message+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9AB71D3A1DBABE2700836D67 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "../Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9AB71D3D1DBABEF000836D67 /* MessageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStore.swift; sourceTree = "<group>"; };
 		9AB71D3F1DBABF8000836D67 /* HugoSamaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HugoSamaAPI.swift; sourceTree = "<group>"; };
+		9AF81E311DDCDA9100B93E7E /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataClass.swift"; path = "../Message+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9AF81E321DDCDA9100B93E7E /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "../Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9AF81E351DDCECEC00B93E7E /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		9AF81E371DDD225500B93E7E /* MessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +111,11 @@
 		9AB71D011DBA97F000836D67 /* hugo messages */ = {
 			isa = PBXGroup;
 			children = (
-				9AB71D391DBABE2700836D67 /* Message+CoreDataClass.swift */,
-				9AB71D3A1DBABE2700836D67 /* Message+CoreDataProperties.swift */,
+				9AF81E311DDCDA9100B93E7E /* Message+CoreDataClass.swift */,
+				9AF81E321DDCDA9100B93E7E /* Message+CoreDataProperties.swift */,
 				9AB71D021DBA97F000836D67 /* AppDelegate.swift */,
+				9AF81E371DDD225500B93E7E /* MessageDetailViewController.swift */,
+				9AF81E351DDCECEC00B93E7E /* MessagesViewController.swift */,
 				9AB71D041DBA97F000836D67 /* ViewController.swift */,
 				9AB71D061DBA97F000836D67 /* Main.storyboard */,
 				9AB71D361DBABD0100836D67 /* HugoMessages.xcdatamodeld */,
@@ -279,10 +285,12 @@
 			files = (
 				9AB71D051DBA97F000836D67 /* ViewController.swift in Sources */,
 				9AB71D031DBA97F000836D67 /* AppDelegate.swift in Sources */,
+				9AF81E381DDD225500B93E7E /* MessageDetailViewController.swift in Sources */,
 				9AB71D381DBABD0100836D67 /* HugoMessages.xcdatamodeld in Sources */,
+				9AF81E331DDCDA9100B93E7E /* Message+CoreDataClass.swift in Sources */,
+				9AF81E341DDCDA9100B93E7E /* Message+CoreDataProperties.swift in Sources */,
 				9AB71D3E1DBABEF000836D67 /* MessageStore.swift in Sources */,
-				9AB71D3C1DBABE2700836D67 /* Message+CoreDataProperties.swift in Sources */,
-				9AB71D3B1DBABE2700836D67 /* Message+CoreDataClass.swift in Sources */,
+				9AF81E361DDCECEC00B93E7E /* MessagesViewController.swift in Sources */,
 				9AB71D401DBABF8000836D67 /* HugoSamaAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +387,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -423,7 +431,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -534,6 +543,7 @@
 				9AB71D2C1DBA97F000836D67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AB71D2D1DBA97F000836D67 /* Build configuration list for PBXNativeTarget "hugo messagesTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +552,7 @@
 				9AB71D2F1DBA97F000836D67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AB71D301DBA97F000836D67 /* Build configuration list for PBXNativeTarget "hugo messagesUITests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +561,7 @@
 				9AB71D321DBA97F000836D67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
