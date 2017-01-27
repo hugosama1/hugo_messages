@@ -13,7 +13,9 @@ import CoreData
 enum MessageResult {
     case success([Message])
     case failure(Error)
+    case successNew([String:Bool])
 }
+
 
 class MessageStore {
     
@@ -71,8 +73,10 @@ class MessageStore {
         let viewContext = persistentContainer.viewContext
         viewContext.performAndWait {
             do {
-                let message = try viewContext.fetch(fetchRequest)[0]
-                lastDate = message.date
+                let messageArray = try viewContext.fetch(fetchRequest)
+                if messageArray.count > 0 {
+                    lastDate = messageArray[0].date
+                }
             } catch {
                 
             }
@@ -93,6 +97,34 @@ class MessageStore {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func saveMessage( message:String,completion: @escaping (MessageResult) -> Void ) {
+        let url = HugoSamaAPI.messagesURL()
+        var request = URLRequest(url: url)
+        let json = [ "message": message ]
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            request.httpMethod = "POST"
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            let task = session.dataTask(with: request) {
+                (data, response, error) -> Void in
+                let result = self.proccessNewMessage(data: data, error: error)
+                completion(result)
+            }
+            task.resume()
+        }catch {
+            print("ERROR SAVING MESSAGE")
+        }
+    }
+    
+    
+    private func proccessNewMessage(data: Data?, error: Error?) -> MessageResult {
+        guard let jsonData = data else {
+            return .failure(error!)
+        }
+        return HugoSamaAPI.newMessage(fromJSON: jsonData)
     }
     
     

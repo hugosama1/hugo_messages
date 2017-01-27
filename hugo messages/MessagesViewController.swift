@@ -13,6 +13,9 @@ class MessagesViewController: UITableViewController {
     var store : MessageStore!
     
     override func viewDidLoad() {
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         store.fetchMessages {
             (messagesResult) -> Void in
             self.updateDataSource()
@@ -45,6 +48,7 @@ class MessagesViewController: UITableViewController {
                     self.store.allMessages = messages
                     self.tableView.reloadData()
                 case .failure(_):break
+                default:break
             }
         }        
     }

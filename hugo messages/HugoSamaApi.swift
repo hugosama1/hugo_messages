@@ -53,8 +53,17 @@ struct HugoSamaAPI {
         }
     }
     
-    static func newMessage( message : String ) {
-        
+    static func newMessage( fromJSON data: Data) -> MessageResult  {
+        do {
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [JSONSerialization.ReadingOptions.allowFragments])
+            if let messageObject = jsonObject as? [String:Bool] {
+                return .successNew(messageObject)
+            }
+            return .failure(HugosamaError.invalidJSONData)
+        } catch let error {
+            return .failure(error)
+        }
+
     }
 
     
